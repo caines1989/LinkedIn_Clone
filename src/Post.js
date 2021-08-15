@@ -6,12 +6,15 @@ import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
 import React from 'react';
 import './Post.css';
 import InputOption from './InputOption';
+import { selectUser } from './features/userSlice';
+import { useSelector } from 'react-redux';
 
 function posts({ name, description, message, photoURL }) {
+    const user = useSelector (selectUser)
     return (
         <div className='post'>
             <div className='post__header'>
-            <Avatar />
+            <Avatar className='post__header' src={user && user.photoUrl}>{user && user.email[0]}</Avatar>
             <div className='post__info'>
                 <h2>{name}</h2>
                 <p>{description}</p>
