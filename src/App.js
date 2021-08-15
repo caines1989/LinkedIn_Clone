@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 import Header from './Header';
 import Sidebar from './Sidebar';
+import Widgets from './Widgets';
 import Feed from './Feed';
 import { login, logout, selectUser } from './features/userSlice';
 import Login from './Login'; 
@@ -42,7 +43,7 @@ useEffect(() => {
       <div className='app__body'>
         <Sidebar />
         <Feed />
-        {/* Right Sidebar widget */}
+        <Widgets />
         
 
       </div>

@@ -3,18 +3,19 @@ import ThumbsUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import ChatOutlinedIcon from '@material-ui/icons/ChatOutlined';
 import ShareOutlinedIcon from '@material-ui/icons/ShareOutlined';
 import SendOutlinedIcon from '@material-ui/icons/SendOutlined';
-import React from 'react';
+import React, {forwardRef} from 'react';
 import './Post.css';
 import InputOption from './InputOption';
-import { selectUser } from './features/userSlice';
 import { useSelector } from 'react-redux';
+import { selectUser } from './features/userSlice';
 
-function posts({ name, description, message, photoURL }) {
-    const user = useSelector (selectUser)
+const posts = forwardRef (({ name, description, message, photoUrl }, ref) => {
+    const user = useSelector(selectUser);
+
     return (
-        <div className='post'>
+        <div ref={ref} className='post'>
             <div className='post__header'>
-            <Avatar className='post__header' src={user && user.photoUrl}>{user && user.email[0]}</Avatar>
+            <Avatar src={user.photoUrl}>{name[0]}</Avatar>
             <div className='post__info'>
                 <h2>{name}</h2>
                 <p>{description}</p>
@@ -33,6 +34,6 @@ function posts({ name, description, message, photoURL }) {
             </div>
         </div>
     )
-}
+})
 
 export default posts;
